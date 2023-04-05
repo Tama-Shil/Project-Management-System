@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="text-center bg-primary">Idea List</h1>
+  <div class="card-body" >
+      <div class="row justify-content-md-center ">
+        <div class="col-md-auto border border-primary" style="padding: 20px 50px ">
+          
+          <table class="table">
+            <thead>
+              <tr>
+                <th>project</th>
+                <th>Teacher Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+          {% for idea in ideas %}
+            <tr>
+              <td>{{ idea.project.name }}</td>
+              <td>{{ idea.teacher.get_full_name }}</td>
+              <td>{{ idea.description }}</td>
+            </tr>
+          {% empty %}
+            <li>No ideas found.</li>
+          {% endfor %}
+        </table>
+        </div>
+      
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'success' %}
+                    <p class="messages alert alert-success" >{{ message }}</p>
+                {% endif %}
+                {% if message.tags == 'error' %}
+                    <p class="messages alert alert-danger" >{{ message }}</p>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+{% endblock %}

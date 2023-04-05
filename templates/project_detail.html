@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2 class="text-center bg-primary">{{ project.name }}</h2>
+  <div class="card-body" >
+      <div class="row justify-content-md-center ">
+        <div class="col-md-auto border border-primary" style="padding: 20px 50px ">
+
+  <p>Short Name: {{ project.short_name }}</p>
+  <p>Created By: {{ project.students }}</p>
+  <p>Created On: {{ project.created_at }}</p>
+
+  {% if project.status == "0" %}
+    <p>Status: Pending Approval</p>
+    {% if user.is_authenticated and user.user_type == "teacher" %}
+      <form action="{% url 'approve_project' short_name=project.short_name %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Approve</button>
+      </form>
+      <br>
+    {% endif %}
+  {% elif project.status == "1" %}
+    <p>Status: Approved</p>
+    {% if user.is_authenticated and user == project.teacher %}
+      <a href="{% url 'edit_project' short_name=project.short_name %}" class="btn btn-primary">Edit</a>
+      <form action="{% url 'delete_project' short_name=project.short_name %}" method="post" style="display: inline-block;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+      <br>
+    {% endif %}
+  {% else %}
+    <p>Status: Rejected</p>
+  {% endif %}
+  <br>
+  <h4> Description </h4>
+  <p>{{ project.description }}</p>
+  <button class="btn btn-dark"><a href="{{ project.file }}">Download project</a></button>
+
+
+
+
+
+  <br>
+  <br>
+  <h2 class="text-center bg-primary">Submitted Ideas</h2>
+  {% if project.ideas.count > 0 %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Idea Description</th>
+        <th>Teacher Name</th>
+      </tr>
+    </thead>
+      {% for idea in project.ideas.all %}
+      <tr>
+        <td>{{ idea.description }}</td>
+        <td>{{ idea.teacher.get_full_name }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>No ideas have been submitted for this project yet.</p>
+  {% endif %}
+
+  {% if user.is_authenticated and user.user_type == "teacher" %}
+    <a href="{% url 'suggest_idea' short_name=project.short_name %}" class="btn btn-primary">Suggest Idea</a>
+  {% endif %}
+
+</div>
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <p class="messages alert alert-success" >{{ message }}</p>
+        {% endif %}
+        {% if message.tags == 'error' %}
+            <p class="messages alert alert-danger" >{{ message }}</p>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+</div>
+</div>
+{% endblock %}

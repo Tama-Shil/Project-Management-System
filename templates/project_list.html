@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-center bg-primary">Project List</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Project Name</th>
+      <th>Project Short Name</th>
+      <th>Project Teacher</th>
+      <th>Project Student</th>
+      <th>Project Status</th>
+      <th>Project File</th>
+      <th>Created At</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  {% for project in projects %}
+  <tr>
+    <td>{{ project.id }}</td>
+    <td>{{ project.name }}</td>
+    <td>{{ project.short_name }}</td>
+    <td>{{ project.teacher }}</td>
+    <td>{{ project.students }}</td>
+    <td>
+      {% if project.status == "0" %}
+      Pending
+      {% elif project.status == "1" %}
+      Approved
+      {% endif %}
+    </td>
+    <td><a href="{{ project.file }}">Download</a></td>
+    <td>{{ project.created_at }}</td>
+    <td>
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-primary"><a class="text-light"
+            href="{% url 'project_detail' short_name=project.short_name %}">Details</a></button>
+        <button type="button" class="btn btn-secondary"><a class="text-light"
+            href="{% url 'edit_project' short_name=project.short_name %}">Edit</a></button>
+        <button type="button" class="btn btn-danger"><a class="text-light"
+            href="{% url 'delete_project' short_name=project.short_name %}">Delete</a></button>
+      </div>
+    </td>
+  </tr>
+  {% empty %}
+  <tr>
+    <td colspan="9">No projects found.</td>
+  </tr>
+  {% endfor %}
+
+
+  {% if messages %}
+  {% for message in messages %}
+  {% if message.tags == 'success' %}
+  <p class="messages alert alert-success">{{ message }}</p>
+  {% endif %}
+  {% if message.tags == 'error' %}
+  <p class="messages alert alert-danger">{{ message }}</p>
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+</table>
+
+
+{% endblock %}

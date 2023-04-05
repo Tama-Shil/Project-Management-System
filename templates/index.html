@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src='{% get_media_prefix %}six.jpg' width="1380px" height="470px" alt="..."
+                style="text-align: center; margin-left: 100px;">
+            <div class="carousel-caption d-md-block">
+                <h1 class="fw-bold " text-color="red">All projects in one app</h1>
+                <p>Join with us and get the best experience</p>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>
+
+
+</header>
+
+<main>
+
+
+
+
+    <section class="container">
+        <div class="p-3 mt-5 mb-5 bg-secondary text-white">
+            <h1 align="center">What We Do</h1>
+        </div>
+
+        <div class="row gx-2 gy-4">
+            <div class=" col-lg-6 ">
+                <h5 class="center mt-2">
+                    <ul>
+                        <li>An agile project management tool,Supports you with unique resources for your work.</li>
+                        <li>Discuss with the author.</li>
+                        <li>Get many projects in one place and save time.</li>
+                        <li>Drop comments</li>
+                        <li>Download projects</li>
+
+                    </ul>
+                </h5>
+            </div>
+
+            <div class="col-lg-4 ">
+                <img width="380px" height="250px" src='{% get_media_prefix %}asa.webp' alt="">
+            </div>
+        </div>
+    </section>
+
+    <section class="container mt-5 mb-5">
+        <div class="row gx-2 gy-4">
+            <div class="col-lg-6 ">
+                <img width="380px" height="250px" src='{% get_media_prefix %}four.jpg' alt="">
+            </div>
+            <div class=" col-lg-4 ">
+                <h5 class="center mt-2">
+                    <ul>
+                        <li>Project submitting platform</li>
+                        <li> Multiple project handling in a single platform</li>
+                        <li> organized project list</li>
+                        <li> Project reviews</li>
+                        <li> Project editing</li>
+
+                    </ul>
+
+                </h5>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="container mt-5 mb-5">
+
+
+        <div class="row gx-2 gy-4">
+
+            <div class=" col-lg-6 ">
+                <h5 class="center mt-2">
+                    <ul>
+                        <li>Project proposal submitting</li>
+                        <li> Proposals reviewing</li>
+                        <li> Discuss with experts</li>
+                        <li> Commenting on proposals</li>
+                        <li> Proposal updating</li>
+
+                    </ul>
+
+                </h5>
+            </div>
+            <div class="col-lg-4 ">
+                <img width="380px" height="250px" src='{% get_media_prefix %}seven.webp' alt="">
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Package section -->
+
+    <section class="container mt-5 mb-5">
+        <div class="p-3 mt-5 mb-5 bg-primary text-white">
+            <h1 align="center">Our features</h1>
+        </div>
+        <div>
+            <div class="row">
+                <div class="col-lg-4 ">
+                    <div class="card border-2">
+                        <div class="card-body">
+
+                            <h4 class="fw-bold" align="center">
+                                <a class="nav-link" href="{% url 'search_project' %}">Download Projects</a>
+                            </h4>
+                            <a href="#"
+                                class="btn btn-light text-white border border-5 d-flex align-items-center justify-content-center m-3">
+                                <p class="text-muted">
+
+                                    <small>
+                                        Access to projects <br>
+                                        Security facility<br>
+                                        Comment option<br>
+                                        Review<br>
+                                    </small>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card border-2">
+                        <div class="card-body">
+                            <h4 class="fw-bold " align="center">
+                                <a class="nav-link" href="{% url 'create_project' %}">Project Submit</a>
+                            </h4>
+                            <a href="#"
+                                class="btn btn-light text-white border border-5 d-flex align-items-center justify-content-center m-3">
+                                <p class="text-muted">
+
+                                    <small>
+                                        Submit projects <br>
+                                        Review projects<br>
+                                        Update projects<br>
+                                        Feedback checking<br>
+                                    </small>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card border-2">
+                        <div class="card-body">
+                            <h4 class="fw-bold" align="center">
+                                <a class="nav-link" href="{% url 'create_project' %}"> Project Proposals</a>
+                            </h4>
+                            <a href="#"
+                                class="btn btn-light text-white border border-5 d-flex align-items-center justify-content-center m-3">
+                                <p class="text-muted">
+
+                                    <small>
+                                        Submit projects proposals <br>
+                                        Discuss with experts<br>
+                                        Feedback on the proposals<br>
+                                        Updating proposals<br>
+                                    </small>
+                                </p>
+                            </a>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

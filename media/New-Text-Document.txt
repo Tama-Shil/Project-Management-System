@@ -1,0 +1,6 @@
+username        pass
+admin		admin
+Student1	*121*stu1#
+Teacher1	*121*tcr1#
+Abc		asdfghjkl;'
+shifati_rabbi	*121*sr#

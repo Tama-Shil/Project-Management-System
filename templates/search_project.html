@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2 class="text-center bg-primary">Search Project</h2>
+  <div class="container">
+  <form method="GET" action="{% url 'search_project' %}">
+    <div class="form-group">
+      <label for="search">Search by name or short name:</label>
+      <input type="text" class="form-control" id="search" name="search" placeholder="Enter search term" value="{{ search }}">
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+
+  {% if projects %}
+    <hr>
+    <h3>Search Results:</h3>
+    <ul>
+    {% for project in projects %}
+      <li><a href="{% url 'project_detail' short_name=project.short_name %}">{{ project.name }}</a></li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+  </div>
+{% endblock %}
